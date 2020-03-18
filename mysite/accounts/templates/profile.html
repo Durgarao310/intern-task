@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="profile">
-    <h5 class="user-item"><small class="small-items">username: </small>{{ user.username }} <small class="small-items"> mail: </small>{{ user.email }} <small class="small-items">mobile number: </small>{{ user.mobile_number }}</h5>
-        <div class="form-items">    
-            <form method="POST">
-                {% csrf_token %}
-                <small>Profile Info</small>
-                {{ u_form|crispy }}
-                <button class="btn" type="submit">Update</button>
-            </form> 
+    <div class="content-section">
+      <div class="media">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+          <p class="text-secondary">{{ user.mobile_number }}</p>
         </div>
+      </div>
+      <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info</legend>
+              {{ u_form|crispy }}
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+      </form>
     </div>
 {% endblock content %}
